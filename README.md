@@ -64,8 +64,10 @@ A model will be developed to predict if the person is undergoing depression and 
 
 
 ## Steps to setup the project
-1. Clone the github repo / download the zip and unzip
-2. Create folder data and subfolders at top level as per the hierarchy shown above.
-3. Download the files from https://www.kaggle.com/competitions/playground-series-s4e11/ and keep it the "data/external" folder use the same naming convension
+- Clone the github repo / download the zip and unzip
+- Create folder data and subfolders at top level as per the hierarchy shown above.
+- Setup virtual environment for the project
+- install packages using pip install -r requirements.txt
+- Download the files from https://www.kaggle.com/competitions/playground-series-s4e11/ and keep it the "data/external" folder use the same naming convension
 4. Run the 1.01.gij-prepare notebook to generate data splits
 5. Run the 1.02.gij-clean notebook to cleanup the data and genrate output 
