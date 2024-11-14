@@ -1,38 +1,37 @@
-Profession,count
-Sales Executive,1537
-Chef,2511
-Travel Consultant,1653
-Other,32591
-Teacher,22134
-Marketing Manager,1767
-Consultant,3787
-Accountant,1195
-Educational Consultant,2549
-Pharmacist,3436
-Plumber,1573
-Customer Support,1820
-Content Writer,6970
-Researcher,2065
-HR Manager,3566
-Data Scientist,2154
-Chemist,2633
-Doctor,2890
-Pilot,1685
-Business Analyst,2805
-Lawyer,1947
-Architect,3851
-Digital Marketer,1216
-Finanancial Analyst,1165
-Financial Analyst,1411
-Research Analyst,611
-Judge,1525
-Mechanical Engineer,1053
-Graphic Designer,1037
-Civil Engineer,1284
-Software Engineer,1350
-Entrepreneur,2637
-Investment Banker,346
-UX/UI Designer,1296
-Manager,1556
-Electrician,1391
-Unemployed,3
+,Profession,Percentage,Depressed,Total
+0,Accountant,6.35,76,1195
+1,Architect,9.81,378,3851
+2,Business Analyst,5.88,165,2805
+3,Chef,5.13,129,2511
+4,Chemist,2.92,77,2633
+5,Civil Engineer,8.25,106,1284
+6,Consultant,4.54,172,3787
+7,Content Writer,1.85,129,6970
+8,Customer Support,4.56,83,1820
+9,Data Scientist,7.66,165,2154
+10,Digital Marketer,4.44,54,1216
+11,Doctor,4.84,140,2890
+12,Educational Consultant,7.61,194,2549
+13,Electrician,4.09,57,1391
+14,Entrepreneur,2.0,53,2637
+15,Finanancial Analyst,4.03,47,1165
+16,Financial Analyst,8.5,120,1411
+17,Graphic Designer,18.12,188,1037
+18,HR Manager,10.85,387,3566
+19,Investment Banker,6.93,24,346
+20,Judge,10.62,162,1525
+21,Lawyer,7.55,147,1947
+22,Manager,8.16,127,1556
+23,Marketing Manager,5.26,93,1767
+24,Mechanical Engineer,9.97,105,1053
+25,Other,53.33,17383,32591
+26,Pharmacist,2.79,96,3436
+27,Pilot,4.86,82,1685
+28,Plumber,5.97,94,1573
+29,Research Analyst,6.38,39,611
+30,Researcher,3.97,82,2065
+31,Sales Executive,4.42,68,1537
+32,Software Engineer,6.29,85,1350
+33,Teacher,5.49,1216,22134
+34,Travel Consultant,4.35,72,1653
+35,UX/UI Designer,4.24,55,1296
