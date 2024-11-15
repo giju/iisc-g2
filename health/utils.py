@@ -7,6 +7,8 @@ import re
 import pandas as pd
 import numpy as np
 
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder
 
 """
 Column Names
@@ -43,6 +45,7 @@ STR_COLS = [
     'Have you ever had suicidal thoughts ?', # Data  is clean
     'Family History of Mental Illness', #Clean
 ]
+
 ALLOWED_COLS = [
     'id',
     # 'Name',
@@ -66,6 +69,31 @@ ALLOWED_COLS = [
     'Depression',
 ]
 
+DTYPE_DICT = {   
+    'id':int,
+    'Depression': str ,
+    'CGPA': str,
+    'Sleep Duration':str
+}
+
+CLEANED_DTYPES = {
+    'Age' :float, 
+    'City':str, 
+    'Working Professional or Student':str, 
+    'Profession' : str, 
+    'Academic Pressure':float, 
+    'Work Pressure' : float, 
+    'CGPA' :float, 
+    'Study Satisfaction' : float, 
+    'Job Satisfaction' : float, 
+    'Sleep Duration' : float, 
+    'Dietary Habits' :str , 
+    'Degree':str,
+    'Have you ever had suicidal thoughts ?' :str, 
+    'Work/Study Hours' :float , 
+    'Financial Stress' : float 
+}
+    
 def slugify(s):
     s = s.lower().strip()
     s = re.sub(r'[^A-Za-z0-9]+', '-', string=s)
@@ -91,18 +119,21 @@ def load_trimaing_data() :
 
         d = pd.read_csv(f,
             usecols=ALLOWED_COLS,  
-            dtype={   
-            'id':int,
-            'Depression': str ,
-            'CGPA': str,
-            'Sleep Duration':str
-        })
+            dtype= CLEANED_DTYPES)
 
         df_list.append(d)
             # Combine the list of dataframes
     df =  pd.concat(df_list)
     # df['id'] = df['id'].to_numpy()
     return df
+
+
+
+column_encoder = ColumnTransformer(
+    transformers=[
+        ('cat', OneHotEncoder(),  STR_COLS) 
+    ],
+)
 
 
 
