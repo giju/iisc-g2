@@ -109,8 +109,8 @@ def list_files(directory):
 # print(f)
 
 
-def load_trimaing_data() :
-    train_list = list_files('../data/processed/')
+def load_training_data(version) :
+    train_list = list_files(f'../data/processed/{version}/')
     df_list = []
  
     for f in train_list:
