@@ -34,9 +34,12 @@ A model will be developed to predict if the person is undergoing depression and 
 │
 ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
 │
-├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-│   └── figures        <- Generated graphics and figures to be used in reporting
-│
+├── reports            <- Generated analysis as HTML, PDF, CSV, etc.
+│   |── figures        <- Generated graphics and figures to be used in reporting
+|   └── experiment     <- Generated analysis as HTML, PDF, CSV
+│      └── figures     <- Generated graphics and figures from an experiement
+|       report1.csv ..
+│   
 ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
 │                         generated with `pip freeze > requirements.txt`
 │
@@ -72,3 +75,5 @@ A model will be developed to predict if the person is undergoing depression and 
 - Run the 1.01.gij.prepare notebook to generate data splits
 - Run the 1.02.gij.clean notebook to cleanup the data and genrate output 
 - Run the 2.01.gij.eda notebook to generate reports and visualisations
+
+[Demo Link](https://iisc.d2.ceegees.in/)
