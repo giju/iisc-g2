@@ -16,5 +16,6 @@ scikit-learn
 tqdm
 typer
 joblib
+openai
 # packet
 -e .

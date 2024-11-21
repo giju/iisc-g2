@@ -1,0 +1,14 @@
+body {
+   background:url('./bg.jpg') ;
+   background-repeat: no-repeat;
+   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+   background-size: cover;
+   background-attachment: fixed;
+    padding:40px;
+}
+
+.result {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    line-height: 1.8em;
+    color: #454545;
+}
