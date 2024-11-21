@@ -53,12 +53,14 @@ def api_assess():
     print('new input data',data)
 
     content = random.choice(happy_user)
-    if (False) :
-        content = 'Keep up the good work, You are looking good '+ content
-    else:
-        prompt = generate_prompt(data)
-        content = get_gpt_response(prompt)
-    
+    try :
+        if (False) :
+            content = 'Keep up the good work, You are looking good '+ content
+        else:
+            prompt = generate_prompt(data)
+            content = get_gpt_response(prompt)
+    except:
+        content = 'An error occured please try again, make sure you have filled all fields'
     return jsonify({
         'content' :content
     })
@@ -71,4 +73,4 @@ def predict():
     return jsonify({'prediction': int(prediction[0])})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,port=5001)

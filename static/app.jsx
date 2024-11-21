@@ -15,10 +15,12 @@ function SurveyForm() {
         gender:'Male',
         sleepDuration: 8,
         timeSpent: 6,
-        suicidalThoughts: 'No',
+        suicidalThoughts: '',
         familyHistory: '',
     });
-    const [inflight,setInflight] = React.useState('')
+
+    const submitDisabled = Object.keys(formData).some(name => formData[name] == '') ;
+    const [inflight,setInflight] = React.useState(null)
 
     const [confData, setConfData] = React.useState({
         degree: [],
@@ -64,7 +66,7 @@ function SurveyForm() {
     return (
         <div style={{ padding: '20px', maxWidth: '600px', margin: 'auto', background: "rgba(255,255,255,0.92)" }}>
             <Typography variant="h5" style={{ marginBottom: '20px' }}>Improve Your mental health</Typography>
-            {(result == null && inflight == '') && <form onSubmit={handleSubmit}>
+            {(result == null && inflight == null) && <form onSubmit={handleSubmit}>
                 <Typography variant="h6" style={{ marginBottom: '20px' }}>Take this small survey and we can give you insights on your mental health</Typography>
                 <TextField
                     label="Your Name"
@@ -276,7 +278,7 @@ function SurveyForm() {
                 </FormControl>
                 </div>}
 
-                <Button type="submit" variant="contained" color="primary" fullWidth>Submit</Button>
+                <Button disabled={submitDisabled} type="submit" variant="contained" color="primary" fullWidth>Submit</Button>
             </form>}
             {inflight == 'pending' && <div style={{margin:'200px 20px',textAlign:'center'}}>
                         <CircularProgress style={{margin:'20px'}}/>     <br/>
@@ -284,7 +286,8 @@ function SurveyForm() {
             </div>}
             {result != null && <div className="result">
             <div dangerouslySetInnerHTML={{__html: marked.parse(result) }}></div> 
-            <Button onClick={e => setResult(null)} variant="outlined">Back to Survey</Button>
+            
+            <Button style={{margin:'0px 20px'}} onClick={e => setResult(null)} variant="outlined">Back to Survey</Button>
             </div>}
             <Typography variant="subtitle1" style={{color:'#AAA',fontSize:'12px',textAlign:'center'}}>This is a capstone project developed for the IISC Machine learning course by group2 CCE Aug 2024</Typography>
         </div>
