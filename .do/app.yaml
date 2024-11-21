@@ -1,0 +1,6 @@
+name: iisc-app
+services:
+- name: web
+  github:
+    repo: giju/iisc-g2
+    branch: main

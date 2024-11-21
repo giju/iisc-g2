@@ -1,0 +1,7 @@
+spec:
+  name: iisc-app
+  services:
+  - name: web
+    git:
+      branch: main
+      repo_clone_url: https://github.com/giju/iisc-g2.git
