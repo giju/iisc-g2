@@ -17,5 +17,6 @@ tqdm
 typer
 joblib
 openai
+catboost
 # packet
 -e .
