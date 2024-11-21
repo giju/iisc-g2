@@ -1,36 +1,37 @@
 ,Profession,Percentage,Depressed,Total
-0,Accountant,0.0,0,1195
-1,Architect,0.0,0,3851
-2,Business Analyst,0.0,0,2805
-3,Chef,0.0,0,2511
-4,Chemist,0.0,0,2633
-5,Civil Engineer,0.0,0,1284
-6,Consultant,0.0,0,3787
-7,Content Writer,0.0,0,6970
-8,Customer Support,0.0,0,1820
-9,Data Scientist,0.0,0,2154
-10,Digital Marketer,0.0,0,1216
-11,Doctor,0.0,0,2890
-12,Educational Consultant,0.0,0,2549
-13,Electrician,0.0,0,1391
-14,Entrepreneur,0.0,0,2637
-15,Finanancial Analyst,0.0,0,1165
-16,Financial Analyst,0.0,0,1411
-17,Graphic Designer,0.0,0,1037
-18,HR Manager,0.0,0,3566
-19,Investment Banker,0.0,0,346
-20,Judge,0.0,0,1525
-21,Lawyer,0.0,0,1947
-22,Manager,0.0,0,1556
-23,Marketing Manager,0.0,0,1767
-24,Mechanical Engineer,0.0,0,1053
-25,Pharmacist,0.0,0,3436
-26,Pilot,0.0,0,1685
-27,Plumber,0.0,0,1573
-28,Research Analyst,0.0,0,611
-29,Researcher,0.0,0,2065
-30,Sales Executive,0.0,0,1537
-31,Software Engineer,0.0,0,1350
-32,Teacher,0.0,0,22134
-33,Travel Consultant,0.0,0,1653
-34,UX/UI Designer,0.0,0,1296
+0,Accountant,6.06,29,478
+1,Architect,10.14,160,1577
+2,Business Analyst,6.1,70,1146
+3,Chef,5.33,52,974
+4,Chemist,3.51,37,1054
+5,Civil Engineer,10.94,59,539
+6,Consultant,4.02,62,1541
+7,Content Writer,2.06,58,2811
+8,Customer Support,4.78,35,732
+9,Data Scientist,7.55,63,834
+10,Digital Marketer,4.22,22,521
+11,Doctor,4.5,54,1200
+12,Educational Consultant,7.45,74,993
+13,Electrician,3.38,19,562
+14,Entrepreneur,1.69,18,1060
+15,Finanancial Analyst,4.31,19,440
+16,Financial Analyst,7.2,42,583
+17,Graphic Designer,20.14,81,402
+18,HR Manager,11.6,161,1387
+19,Investment Banker,4.83,6,124
+20,Judge,9.22,56,607
+21,Lawyer,7.2,57,791
+22,Manager,7.88,48,609
+23,Marketing Manager,5.58,40,716
+24,Mechanical Engineer,9.01,33,366
+25,Other,52.92,6891,13020
+26,Pharmacist,2.45,33,1342
+27,Pilot,5.67,38,670
+28,Plumber,6.44,39,605
+29,Research Analyst,5.28,13,246
+30,Researcher,4.04,35,866
+31,Sales Executive,3.78,23,607
+32,Software Engineer,6.83,37,541
+33,Teacher,5.36,477,8889
+34,Travel Consultant,4.01,25,623
+35,UX/UI Designer,4.41,24,543
