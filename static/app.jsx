@@ -6,15 +6,15 @@ function SurveyForm() {
         professionType: '',
         profession: '',
         name: '',
-        workPressure: 2,
+        pressure: 2,
         age:26,
-        academicPressure: 2,
         degree: '',
-        jobSatisfaction: 2,
+        satisfaction: 2,
         dietaryHabits: '',
         gender:'Male',
         sleepDuration: 8,
         timeSpent: 6,
+        financialStress:2,
         suicidalThoughts: '',
         familyHistory: '',
     });
@@ -67,7 +67,7 @@ function SurveyForm() {
         <div style={{ padding: '20px', maxWidth: '600px', margin: 'auto', background: "rgba(255,255,255,0.92)" }}>
             <Typography variant="h5" style={{ marginBottom: '20px' }}>Improve Your mental health</Typography>
             {(result == null && inflight == null) && <form onSubmit={handleSubmit}>
-                <Typography variant="h6" style={{ marginBottom: '20px' }}>Take this small survey and we can give you insights on your mental health</Typography>
+                <Typography variant="h6" style={{ marginBottom: '20px' }}>Take this small survey to get insights on your mental health</Typography>
                 <TextField
                     label="Your Name"
                     name="name"
@@ -76,32 +76,36 @@ function SurveyForm() {
                     margin="normal"
                     onChange={handleChange}
                 />
-                <FormControl fullWidth variant="outlined" margin="normal">
-                    <InputLabel>Which city are you from ?</InputLabel>
-                    <Select name="city" value={formData.city} onChange={handleChange}>
+ 
+                    <label>Your gender </label>
+                    <select title="gender" className="w3-input" name="gender" value={formData.gender} onChange={handleChange}>
+                        {['Male','Female'].map(item => {
+                            return <option value={item}>{item}</option>
+                        })}
+                    </select> 
+                    <label>Which city are you from ?</label>
+                    <select  title="select your city" className="w3-select" name="city" value={formData.city} onChange={handleChange}>
+                        <option value="">Select</option>
                         {confData.city.map(item => {
-                            return <MenuItem value={item}>{item}</MenuItem>
+                            return <option value={item}>{item}</option>
                         })}
-                    </Select>
-                </FormControl>
-
-                <FormControl fullWidth variant="outlined" margin="normal">
-                    <InputLabel>Degree</InputLabel>
-                    <Select name="degree" value={formData.degree} onChange={handleChange}>
+                    </select> 
+ 
+                    <label>What is your educational qualification</label>
+                    <select title="Degree" name="degree" className="w3-input" value={formData.degree} onChange={handleChange}>
+                        <option value="">Select</option>
                         {confData.degree.map(item => {
-                            return <MenuItem value={item}>{item}</MenuItem>
+                            return <option value={item}>{item}</option>
                         })}
-                    </Select>
-                </FormControl>
-
-                <FormControl fullWidth variant="outlined" margin="normal">
-                    <InputLabel>"How healthy are your dietary habits"</InputLabel>
-                    <Select name="dietaryHabits" value={formData.dietaryHabits} onChange={handleChange}>
+                    </select> 
+ 
+                    <label>How healthy are your dietary habits</label>
+                    <select title="Dietary Habits" className="w3-input" name="dietaryHabits" value={formData.dietaryHabits} onChange={handleChange}>
+                        <option value="">Select</option>
                         {confData.diet.map(item => {
-                            return <MenuItem value={item}>{item}</MenuItem>
+                            return <option value={item}>{item}</option>
                         })}
-                    </Select>
-                </FormControl>
+                    </select> 
 
                 <Typography variant="subtitle1" gutterBottom>
                     How old are you (Age in years)
@@ -134,30 +138,29 @@ function SurveyForm() {
                 <FormControl component="fieldset" style={{ marginBottom: '20px' }}>
                     <Typography variant="subtitle">Are you a Working Professional or Student</Typography>
                     <RadioGroup name="professionType" onChange={handleChange}>
-                        <FormControlLabel value="working" control={<Radio defaultCheked />} label="Working Professional" />
-                        <FormControlLabel value="student" control={<Radio />} label="Student" />
+                        <FormControlLabel value="Working Professional" control={<Radio defaultCheked />} label="Working Professional" />
+                        <FormControlLabel value="Student" control={<Radio />} label="Student" />
                     </RadioGroup>
                 </FormControl>
 
 
-                {formData.professionType == 'working' && <div>
-                    <FormControl fullWidth variant="outlined" margin="normal">
+                {formData.professionType != 'Student' && <div> 
                         <InputLabel>Profession</InputLabel>
-                        <Select name="profession" value={formData.profession} onChange={handleChange}>
+                        <select title="select profession" className="w3-input" name="profession" value={formData.profession} onChange={handleChange}>
+                            <option value="">Select</option>
                             {confData.profession.map(item => {
-                                return <MenuItem value={item}>{item}</MenuItem>
+                                return <option value={item}>{item}</option>
                             })}
-                        </Select>
-                    </FormControl>
+                        </select> 
 
 
                     <Typography variant="subtitle1" gutterBottom>
                         Work Pressure  (1 = Low, 5 = High)
                     </Typography>
                     <Slider
-                        name="workPressure"
-                        value={formData.workPressure}
-                        onChange={(event, value) => setFormData({ ...formData, workPressure: value })}
+                        name="pressure"
+                        value={formData.pressure}
+                        onChange={(event, value) => setFormData({ ...formData, pressure: value })}
                         step={1}
                         marks
                         min={1}
@@ -183,9 +186,9 @@ function SurveyForm() {
                         Job Satisfaction  (1 = Low, 5 = High)
                     </Typography>
                     <Slider
-                        name="jobSatisfaction"
-                        value={formData.jobSatisfaction}
-                        onChange={(event, value) => setFormData({ ...formData, jobSatisfaction: value })}
+                        name="satisfaction"
+                        value={formData.satisfaction}
+                        onChange={(event, value) => setFormData({ ...formData, satisfaction: value })}
                         step={1}
                         marks
                         min={1}
@@ -202,15 +205,17 @@ function SurveyForm() {
                         fullWidth
                         variant="outlined"
                         margin="normal"
+                        min={0}
+                        max={10}
                         onChange={handleChange}
                     />
                     <Typography variant="subtitle1" gutterBottom>
                         Academic Pressure  (1 = Low, 5 = High)
                     </Typography>
                     <Slider
-                        name="academicPressure"
-                        value={formData.academicPressure}
-                        onChange={(event, value) => setFormData({ ...formData, academicPressure: value })}
+                        name="pressure"
+                        value={formData.pressure}
+                        onChange={(event, value) => setFormData({ ...formData, pressure: value })}
                         step={1}
                         marks
                         min={1}
@@ -236,9 +241,9 @@ function SurveyForm() {
                         Study Satisfaction (1 = Low, 5 = High)
                     </Typography>
                     <Slider
-                        name="studySatisfaction"
-                        value={formData.studySatisfaction}
-                        onChange={(event, value) => setFormData({ ...formData, studySatisfaction: value })}
+                        name="satisfaction"
+                        value={formData.satisfaction}
+                        onChange={(event, value) => setFormData({ ...formData, satisfaction: value })}
                         step={1}
                         marks
                         min={1}

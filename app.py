@@ -51,17 +51,24 @@ def api_assess():
     # input_data = pd.DataFrame([data])
     # prediction = model.predict(input_data)  
     print('new input data',data)
-
     content = random.choice(happy_user)
+    prediction = 0
+    prompt = ''
     try :
-        if (False) :
+        res = generate_prompt(data) 
+        prediction = res['prediction']
+        prompt = res['prompt']
+        if prediction == 0 :
             content = 'Keep up the good work, You are looking good '+ content
-        else:
-            prompt = generate_prompt(data)
+        else: 
             content = get_gpt_response(prompt)
-    except:
+    except Exception as err:
         content = 'An error occured please try again, make sure you have filled all fields'
+        print("API Error",err)
+    
     return jsonify({
+        'prediction':prediction,
+        'prompt':prompt,
         'content' :content
     })
 

@@ -9,9 +9,18 @@ import pandas as pd
 import numpy as np
 from dotenv import load_dotenv
 from openai import OpenAI
+from joblib import load
 
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder
+
+
+EXEC_MODE = "v1"
+
+
+base = os.path.dirname(__file__)
+
+model = load(os.path.join(base,f"../models/logistic-{EXEC_MODE}.joblib"))
 
 
 # base = os.path.dirname(__file__)
@@ -21,6 +30,7 @@ from sklearn.preprocessing import OneHotEncoder
 
 load_dotenv()
 client = OpenAI()
+
 
 """
 Column Names
@@ -48,7 +58,6 @@ Depression
 """
 
 
-
 ALLOWED_COLS = [
     "id",
     # 'Name',
@@ -73,22 +82,24 @@ ALLOWED_COLS = [
 ]
 
 DTYPE_DICT = {"id": int, "Depression": str, "CGPA": str, "Sleep Duration": str}
-
-NAME_MAP = { 
-    "Working Professional or Student": 'Profession_Status', 
-    "Academic Pressure": 'Academic_Pressure',
-    "Work Pressure": 'Work_Pressure',
-    "Study Satisfaction": 'Study_Satisfaction',
-    "Job Satisfaction": 'Job_Satisfaction',
-    "Sleep Duration": 'Sleep_Duration',
-    "Dietary Habits": 'Dietary_Habits', 
-    "Have you ever had suicidal thoughts ?": 'Suicidal_Thoughts',
-    "Work/Study Hours": 'Work_Study_Hours',
-    "Financial Stress": 'Financial_Stress',
-    "Family History of Mental Illness": "Family_History" 
+NAME_MAP = {
+    "Working Professional or Student": "Profession_Status",
+    "Academic Pressure": "Academic_Pressure",
+    "Work Pressure": "Work_Pressure",
+    "Study Satisfaction": "Study_Satisfaction",
+    "Job Satisfaction": "Job_Satisfaction",
+    "Sleep Duration": "Sleep_Duration",
+    "Dietary Habits": "Dietary_Habits",
+    "Have you ever had suicidal thoughts ?": "Suicidal_Thoughts",
+    "Work/Study Hours": "Work_Study_Hours",
+    "Financial Stress": "Financial_Stress",
+    "Family History of Mental Illness": "Family_History",
 }
 
+
 CLEANED_DTYPES = {
+    "id": int,
+    "Gender": str,
     "Age": float,
     "City": str,
     "Profession_Status": str,
@@ -104,20 +115,38 @@ CLEANED_DTYPES = {
     "Suicidal_Thoughts": str,
     "Work_Study_Hours": float,
     "Financial_Stress": float,
-    "Family_History":str,
-    "Depression": str,
+    "Family_History": str,
+    "Depression": float,
 }
 
-STR_COLS = [
-    "Gender",  # Cleaned
-    "City",  # Cleaned
-    "Profession_Status",  # Clean data
-    "Profession",  # Minor erros need not fix as statistically numbers are not great
-    "Dietary_Habits",  # minor issues not statistically relevant
-    "Degree",  # minor issues not statistically relevant
-    "Suicidal_Thoughts",  # Data  is clean
-    "Family_History",  # Clean
-]
+
+if EXEC_MODE == "v2":
+    CLEANED_DTYPES = {
+        "id": int,
+        "Gender": str,
+        "Age": float,
+        "City": str,
+        "Profession_Status": int,
+        "Profession": str,
+        "Academic_Pressure": float,
+        "Work_Pressure": float,
+        "CGPA": float,
+        "Study_Satisfaction": float,
+        "Job_Satisfaction": float,
+        "Sleep_Duration": float,
+        "Dietary_Habits": float,
+        "Degree": str,
+        "Suicidal_Thoughts": int,
+        "Work_Study_Hours": float,
+        "Financial_Stress": float,
+        "Family_History": int,
+        "Depression": float,
+    }
+
+
+CLEANED_COLS = list(CLEANED_DTYPES.keys())
+STR_COLS = list(filter(lambda x: CLEANED_DTYPES[x] == str, CLEANED_COLS))
+
 
 column_encoder = ColumnTransformer(
     transformers=[("cat", OneHotEncoder(), STR_COLS)],
@@ -142,7 +171,7 @@ def list_files(directory):
 # print(f)
 
 
-def load_training_data(version):
+def load_training_data(version=EXEC_MODE):
     train_list = list_files(f"../data/processed/{version}/")
     df_list = []
 
@@ -150,7 +179,7 @@ def load_training_data(version):
         if not ("train" in f):
             continue
 
-        d = pd.read_csv(f,f dtype=CLEANED_DTYPES)
+        d = pd.read_csv(f, dtype=CLEANED_DTYPES)
 
         df_list.append(d)
         # Combine the list of dataframes
@@ -178,38 +207,79 @@ def get_options():
     }
 
 
+def get_gpt_response(prompt):
+    key = os.getenv("OPENAI_API_KEY")
+    print(f"Promot : {prompt}")
+    response = client.chat.completions.create(
+        model="o1-preview", messages=[{"role": "user", "content": prompt}]
+    )
+    # data = json.loads(content)
+    # print(data['status'])
+    return response.choices[0].message.content
+
 def generate_prompt(data):
+  
+    """
+    id,Gender,Age,City,Profession_Status,
+    Profession,Academic_Pressure,Work_Pressure,CGPA,Study_Satisfaction,
+    Job_Satisfaction,Sleep_Duration,Dietary_Habits,Degree, Suicidal_Thoughts,
+    Work_Study_Hours,Financial_Stress,Family_History,Depression
 
-    print(data)
+    """
+    cols = list(CLEANED_DTYPES.keys())
+    cols.remove('Depression')
+    
 
-    df = pd.DataFrame(
-        [
-            time(),
-            data["name"],
+    if(data['professionType'] == 'Student'):
+        data['workPressure'] = '-1'
+        data['jobSatisfaction'] = '-1'
+        data['academicPressure'] = data['pressure']
+        data['studySatisfaction'] = data['satisfaction']
+        
+    else:
+
+        data['academicPressure'] = '-1'
+        data['studySatisfaction'] = '-1'
+
+        data['workPressure'] = data['pressure']
+        data['jobSatisfaction'] = data['satisfaction']
+
+        data['cgpa'] = -1
+
+        
+
+    df_test = pd.DataFrame(
+        [[
+            99, 
             data["gender"],
             data["age"],
             data["city"],
             data["professionType"],
+
             data["profession"],
-            float(data["academicPressure"]),
-            float(data["workPressure"]),
-            float(data["cgpa"]),
-            float(data["studySatisfaction"]),
-            float(data["jobSatisfaction"]),
-            float(data["sleepDuration"]),
+            float(f"{data["academicPressure"]}"),
+            float(f"{data["workPressure"]}"),
+            float(f"{data["cgpa"]}"),
+            float(f"{data["studySatisfaction"]}"),
+
+            float(f"{data["jobSatisfaction"]}"),
+            float(f"{data["sleepDuration"]}"),
             data["dietaryHabits"],
             data["degree"],
             data["suicidalThoughts"],
-            float(data["timeSpent"]),
-            float(data["financialPressure"]),
-        ]
+
+            float(f"{data["timeSpent"]}"),
+            float(f"{data["financialStress"]}"),
+            data["familyHistory"],
+        ]],columns= cols
     )
     
-    # ecoded = 
-    prediction = model.predict(input_data)
+    # ecoded =  
 
-
+ 
+    prediction = model.predict(df_test)
     prompt = []
+    print(prediction)
     if data["professionType"] != "Student":
 
         prompt.append(
@@ -220,10 +290,10 @@ def generate_prompt(data):
         )
 
         prompt.append(
-            f"the person rates thenselves on work pressure has a {data['workPressure']}/5, 5 beign highest"
+            f"the person rates themselves on work pressure has a {data['workPressure']}/5.0(5.0 being High pressure)"
         )
         prompt.append(
-            f"the person rates thenselves on job satisfaction pressure has a {data['jobSatisfaction']}/5,  5 beign highest"
+            f"the person rates themselves on job satisfaction pressure has a {data['jobSatisfaction']}/5.0 (5.0 being High Satisfaction)"
         )
     else:
         prompt.append(
@@ -234,13 +304,13 @@ def generate_prompt(data):
         )
 
         prompt.append(
-            f"the person rates thenselves on academic pressure has a {data['academicPressure']}/5, 5 being highest"
+            f"the person rates themselves on academic pressure has a {data['academicPressure']}/5.0 (5.0 being High Pressure)"
         )
         prompt.append(
-            f"the person rates thenselves on study satisfaction pressure has a {data['studySatisfaction']}/5,  5 being highest"
+            f"the person rates themselves on study satisfaction pressure has a {data['studySatisfaction']}/5.0 (5.0 being High Satisfaction)"
         )
         prompt.append(
-            f"the person rates thenselves on financial pressure on {data['studySatisfaction']}/5,  5 being highest"
+            f"the person rates themselves on financial pressure on {data['studySatisfaction']}/5.0 (Highest)"
         )
 
     prompt.append(f"with {data['dietaryHabits']} eating habits  ")
@@ -258,15 +328,30 @@ def generate_prompt(data):
     repsond back in a conversational tone as directly talking to the person"""
     )
 
-    return "\n".join(prompt)
+    return {
+        'prediction' : int(prediction[0]),
+        'prompt' : "\n".join(prompt)
+    }
 
 
-def get_gpt_response(prompt):
-    key = os.getenv("OPENAI_API_KEY")
-    print(f"Promot : {prompt}")
-    response = client.chat.completions.create(
-        model="o1-preview", messages=[{"role": "user", "content": prompt}]
-    )
-    # data = json.loads(content)
-    # print(data['status'])
-    return response.choices[0].message.content
+
+def cleanup_diet(val) :
+    if val == 'Unhealthy':
+        return 0
+    elif val == 'Healthy':
+        return 1
+    else:
+        return 0.5
+
+
+def clean_str_data(df):
+
+    df2 = df.copy()
+    df2['Gender'] =  df['Gender'].apply(lambda x:  1.0 if x == 'Male' else 0.0)
+    df2['Family_History'] = df['Family_History'].apply(lambda x:  1.0 if x == 'Yes' else 0.0)
+    df2['Suicidal_Thoughts'] = df['Suicidal_Thoughts'].apply(lambda x:  1.0 if x == 'Yes' else 0.0) 
+    df2['Profession_Status'] = df['Profession_Status'].apply(lambda x:  1.0 if x != 'Student' else 0.0) 
+    df2['Dietary_Habits'] = df['Dietary_Habits'].apply(cleanup_diet)
+    cols = df2.select_dtypes(include= ['object']).columns.to_list()
+    cols.append('id')
+    return df2.drop(columns=cols) 
