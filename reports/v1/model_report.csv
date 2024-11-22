@@ -2,3 +2,7 @@ run_date,model_name,accuracy,tn,tp,fn,fp,model_file,model_path,param_path
 2024-11-22 16:28:56,logistic-v1,89.75,78.31,11.45,6.6,11.45,,../models/logistic-v1-9195ab2dfbb3714fec71d28440c81a9d.joblib,../models/params/params-logistic-v1-9195ab2dfbb3714fec71d28440c81a9d.json
 2024-11-22 16:29:32,logistic-v1,89.75,78.31,11.45,6.6,11.45,,../models/logistic-v1-9195ab2dfbb3714fec71d28440c81a9d.joblib,../models/params/params-logistic-v1-9195ab2dfbb3714fec71d28440c81a9d.json
 2024-11-22 16:29:49,mlpclf-v1,89.73,78.37,11.36,6.69,11.36,,../models/mlpclf-v1-c5e7cd903dc99082bfa557086de2e90e.joblib,../models/params/params-mlpclf-v1-c5e7cd903dc99082bfa557086de2e90e.json
+2024-11-22 16:46:27,logistic-v1,89.75,78.31,11.45,6.6,11.45,,../models/logistic-v1-9195ab2dfbb3714fec71d28440c81a9d.joblib,../models/params/params-logistic-v1-9195ab2dfbb3714fec71d28440c81a9d.json
+2024-11-22 16:47:25,mlpclf-v1,89.75,78.42,11.33,6.72,11.33,,../models/mlpclf-v1-8ed3fa03c33c2b64b0528a6095d00739.joblib,../models/params/params-mlpclf-v1-8ed3fa03c33c2b64b0528a6095d00739.json
+2024-11-22 16:50:18,logistic-v1,89.75,78.31,11.45,6.6,11.45,,../models/logistic-v1-9195ab2dfbb3714fec71d28440c81a9d.joblib,../models/params/params-logistic-v1-9195ab2dfbb3714fec71d28440c81a9d.json
+2024-11-22 16:50:26,mlpclf-v1,89.75,78.42,11.33,6.72,11.33,,../models/mlpclf-v1-8ed3fa03c33c2b64b0528a6095d00739.joblib,../models/params/params-mlpclf-v1-8ed3fa03c33c2b64b0528a6095d00739.json

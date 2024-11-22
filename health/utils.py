@@ -17,10 +17,9 @@ from sklearn.preprocessing import OneHotEncoder
 
 EXEC_MODE = "v1"
 
-
 base = os.path.dirname(__file__)
 
-model = load(os.path.join(base,f"../models/logistic-{EXEC_MODE}.joblib"))
+model = load(os.path.join(base,f"../models/logistic-v1.joblib"))
 
 
 # base = os.path.dirname(__file__)
@@ -98,7 +97,7 @@ NAME_MAP = {
 
 
 CLEANED_DTYPES = {
-    "id": int,
+    "id": float,
     "Gender": str,
     "Age": float,
     "City": str,
@@ -123,24 +122,24 @@ CLEANED_DTYPES = {
 if EXEC_MODE == "v2":
     CLEANED_DTYPES = {
         "id": int,
-        "Gender": str,
+        "Gender": int,
         "Age": float,
         "City": str,
         "Profession_Status": int,
         "Profession": str,
-        "Academic_Pressure": float,
-        "Work_Pressure": float,
+        "Academic_Pressure": int,
+        "Work_Pressure": int,
         "CGPA": float,
-        "Study_Satisfaction": float,
-        "Job_Satisfaction": float,
+        "Study_Satisfaction": int,
+        "Job_Satisfaction": int,
         "Sleep_Duration": float,
-        "Dietary_Habits": float,
+        "Dietary_Habits": int,
         "Degree": str,
         "Suicidal_Thoughts": int,
         "Work_Study_Hours": float,
-        "Financial_Stress": float,
+        "Financial_Stress": int,
         "Family_History": int,
-        "Depression": float,
+        "Depression": int,
     }
 
 
@@ -257,20 +256,20 @@ def generate_prompt(data):
             data["professionType"],
 
             data["profession"],
-            float(f"{data["academicPressure"]}"),
-            float(f"{data["workPressure"]}"),
-            float(f"{data["cgpa"]}"),
-            float(f"{data["studySatisfaction"]}"),
+            float(f"{data['academicPressure']}"),
+            float(f"{data['workPressure']}"),
+            float(f"{data['cgpa']}"),
+            float(f"{data['studySatisfaction']}"),
 
-            float(f"{data["jobSatisfaction"]}"),
-            float(f"{data["sleepDuration"]}"),
-            data["dietaryHabits"],
-            data["degree"],
-            data["suicidalThoughts"],
+            float(f"{data['jobSatisfaction']}"),
+            float(f"{data['sleepDuration']}"),
+            data['dietaryHabits'],
+            data['degree'],
+            data['suicidalThoughts'],
 
-            float(f"{data["timeSpent"]}"),
-            float(f"{data["financialStress"]}"),
-            data["familyHistory"],
+            float(f"{data['timeSpent']}"),
+            float(f"{data['financialStress']}"),
+            data['familyHistory'],
         ]],columns= cols
     )
     
