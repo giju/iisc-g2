@@ -1,0 +1,8 @@
+{
+  "solver": "lbfgs",
+  "alpha": 1e-5,
+  "hidden_layer_sizes": [5, 3],
+  "random_state": 16,
+  "max_iter": 500,
+  "tol": 0.0001
+}
