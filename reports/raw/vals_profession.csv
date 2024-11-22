@@ -1,82 +1,65 @@
 Profession,Count
-Teacher,41291
-Content Writer,13001
-Architect,7352
-Consultant,7149
-HR Manager,6623
-Pharmacist,6549
-Doctor,5453
-Business Analyst,5347
-Chemist,4934
-Entrepreneur,4903
-Chef,4706
-Educational Consultant,4679
-Data Scientist,3972
-Researcher,3824
-Lawyer,3709
-Customer Support,3477
-Pilot,3361
-Marketing Manager,3260
-Travel Consultant,3048
-Judge,2901
-Manager,2892
-Sales Executive,2878
-Plumber,2871
-Electrician,2703
-Financial Analyst,2622
-Software Engineer,2512
-Civil Engineer,2408
-UX/UI Designer,2367
-Digital Marketer,2314
-Finanancial Analyst,2223
-Accountant,2192
-Mechanical Engineer,1977
-Graphic Designer,1883
-Research Analyst,1113
-Investment Banker,650
-Student,15
-Working Professional,5
-Unemployed,5
+Teacher,24906
+Content Writer,7814
+Architect,4370
+Consultant,4229
+HR Manager,4022
+Pharmacist,3893
+Doctor,3255
+Business Analyst,3161
+Entrepreneur,2968
+Chemist,2967
+Chef,2862
+Educational Consultant,2852
+Data Scientist,2390
+Researcher,2328
+Lawyer,2212
+Customer Support,2055
+Marketing Manager,1976
+Pilot,1913
+Travel Consultant,1860
+Plumber,1748
+Sales Executive,1739
+Manager,1737
+Judge,1712
+Electrician,1582
+Financial Analyst,1574
+Software Engineer,1510
+Civil Engineer,1470
+UX/UI Designer,1452
+Digital Marketer,1372
+Accountant,1339
+Finanancial Analyst,1329
+Mechanical Engineer,1177
+Graphic Designer,1163
+Research Analyst,690
+Investment Banker,393
+Student,7
 Academic,5
-Profession,4
-Yogesh,4
-LLM,3
-B.Ed,3
 BCA,3
-PhD,3
+Yogesh,3
+Unemployed,3
+Profession,3
+PhD,2
 MBA,2
-Analyst,2
-MD,2
-M.Ed,2
-Surat,2
-Unveil,2
-Unhealthy,2
-BBA,2
+LLM,2
+Analyst,1
+BBA,1
+Patna,1
+MBBS,1
+M.Ed,1
+Moderate,1
+Nagpur,1
+B.Ed,1
+Working Professional,1
+Medical Doctor,1
+FamilyVirar,1
+City Manager,1
+Pranav,1
+Yuvraj,1
+Dev,1
+BE,1
 B.Com,1
 Family Consultant,1
 Visakhapatnam,1
-BE,1
-MBBS,1
-Dev,1
-Pranav,1
-FamilyVirar,1
-City Manager,1
-Medical Doctor,1
-Moderate,1
-Nagpur,1
-ME,1
-Yuvraj,1
-M.Pharm,1
-City Consultant,1
-No,1
-Surgeon,1
-M.Tech,1
-Simran,1
-MCA,1
-Name,1
-Samar,1
-Manvi,1
-24th,1
-B.Pharm,1
-3M,1
-Patna,1
+Unveil,1
