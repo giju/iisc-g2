@@ -1,37 +1,37 @@
-,Profession,Percentage,Depressed,Total
-0,Accountant,6.35,76,1195
-1,Architect,9.81,378,3851
-2,Business Analyst,5.88,165,2805
-3,Chef,5.13,129,2511
-4,Chemist,2.92,77,2633
-5,Civil Engineer,8.25,106,1284
-6,Consultant,4.54,172,3787
-7,Content Writer,1.85,129,6970
-8,Customer Support,4.56,83,1820
-9,Data Scientist,7.66,165,2154
-10,Digital Marketer,4.44,54,1216
-11,Doctor,4.84,140,2890
-12,Educational Consultant,7.61,194,2549
-13,Electrician,4.09,57,1391
-14,Entrepreneur,2.0,53,2637
-15,Finanancial Analyst,4.03,47,1165
-16,Financial Analyst,8.5,120,1411
-17,Graphic Designer,18.12,188,1037
-18,HR Manager,10.85,387,3566
-19,Investment Banker,6.93,24,346
-20,Judge,10.62,162,1525
-21,Lawyer,7.55,147,1947
-22,Manager,8.16,127,1556
-23,Marketing Manager,5.26,93,1767
-24,Mechanical Engineer,9.97,105,1053
-25,Other,53.33,17383,32591
-26,Pharmacist,2.79,96,3436
-27,Pilot,4.86,82,1685
-28,Plumber,5.97,94,1573
-29,Research Analyst,6.38,39,611
-30,Researcher,3.97,82,2065
-31,Sales Executive,4.42,68,1537
-32,Software Engineer,6.29,85,1350
-33,Teacher,5.49,1216,22134
-34,Travel Consultant,4.35,72,1653
-35,UX/UI Designer,4.24,55,1296
+Profession,Percentage,Depressed,Total
+Accountant,6.42,86,1339
+Architect,9.9,433,4370
+Business Analyst,5.66,179,3161
+Chef,4.85,139,2862
+Chemist,2.83,84,2967
+Civil Engineer,8.09,119,1470
+Consultant,4.7,199,4229
+Content Writer,1.86,146,7814
+Customer Support,4.52,93,2055
+Data Scientist,7.78,186,2390
+Digital Marketer,4.51,62,1372
+Doctor,5.28,172,3255
+Educational Consultant,7.46,213,2852
+Electrician,4.17,66,1582
+Entrepreneur,2.08,62,2968
+Finanancial Analyst,4.13,55,1329
+Financial Analyst,8.32,131,1574
+Graphic Designer,18.57,216,1163
+HR Manager,10.69,430,4022
+Investment Banker,7.12,28,393
+Judge,10.86,186,1712
+Lawyer,7.5,166,2212
+Manager,8.17,142,1737
+Marketing Manager,5.06,100,1976
+Mechanical Engineer,10.11,119,1177
+Other,53.43,19598,36677
+Pharmacist,2.67,104,3893
+Pilot,5.12,98,1913
+Plumber,6.4,112,1748
+Research Analyst,6.23,43,690
+Researcher,4.03,94,2328
+Sales Executive,4.71,82,1739
+Software Engineer,6.15,93,1510
+Teacher,5.56,1386,24906
+Travel Consultant,4.62,86,1860
+UX/UI Designer,3.99,58,1452
